@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ollama Document AI</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+
+  <main class="container">
+
+    <header class="header">
+      <div class="logo">AI</div>
+      <div>
+        <h1>Ollama Document AI</h1>
+        <p>Inteligencia documental local</p>
+      </div>
+    </header>
+
+    <section class="connection">
+      <span id="connectionDot" class="dot"></span>
+      <span id="connectionStatus">Comprobando Ollama...</span>
+      <button id="refreshConnection" class="refresh">↻</button>
+    </section>
+
+    <section class="panel">
+
+      <h2>Configuración</h2>
+
+      <label for="serverUrl">Servidor Ollama</label>
+
+      <input
+        id="serverUrl"
+        type="text"
+        value="http://127.0.0.1:11434"
+        readonly
+      >
+
+      <label for="modelName">Modelo de inteligencia artificial</label>
+
+      <input
+        id="modelName"
+        type="text"
+        value="qwen3.8:27b"
+      >
+
+      <button id="saveSettings" class="secondary">
+        Guardar configuración
+      </button>
+
+    </section>
+
+    <section class="panel">
+
+      <h2>Documentos TXT</h2>
+
+      <label for="fileInput" class="dropzone">
+        <span class="uploadIcon">＋</span>
+        <strong>Seleccionar documentos</strong>
+        <small>Admite varios archivos .txt</small>
+      </label>
+
+      <input
+        type="file"
+        id="fileInput"
+        accept=".txt,text/plain"
+        multiple
+        hidden
+      >
+
+      <div id="fileList" class="fileList">
+        No hay documentos seleccionados.
+      </div>
+
+      <button id="clearFiles" class="secondary">
+        Limpiar documentos
+      </button>
+
+    </section>
+
+    <section class="panel">
+
+      <h2>Tipo de análisis</h2>
+
+      <select id="analysisType">
+
+        <option value="executive">
+          Resumen ejecutivo
+        </option>
+
+        <option value="detailed">
+          Resumen detallado
+        </option>
+
+        <option value="conclusions">
+          Conclusiones y recomendaciones
+        </option>
+
+        <option value="keypoints">
+          Ideas principales
+        </option>
+
+        <option value="risks">
+          Identificación de riesgos
+        </option>
+
+        <option value="combined">
+          Informe conjunto de documentos
+        </option>
+
+      </select>
+
+      <button id="summarizeBtn" class="primary">
+        Analizar documentos
+      </button>
+
+    </section>
+
+    <section id="progressSection" class="panel" hidden>
+
+      <div class="progressBar">
+        <div id="progress"></div>
+      </div>
+
+      <p id="progressText">Procesando...</p>
+
+    </section>
+
+    <section class="panel">
+
+      <div class="sectionTitle">
+        <h2>Resultado del análisis</h2>
+        <span id="resultStatus"></span>
+      </div>
+
+      <div id="result" class="result">
+        Aquí aparecerán los resultados.
+      </div>
+
+      <button id="downloadBtn" class="secondary" hidden>
+        Descargar informe TXT
+      </button>
+
+    </section>
+
+    <section class="panel">
+
+      <h2>Preguntar a los documentos</h2>
+
+      <textarea
+        id="question"
+        placeholder="Ejemplo: ¿Cuáles son las conclusiones principales?"
+      ></textarea>
+
+      <button id="askBtn" class="primary">
+        Consultar a Qwen
+      </button>
+
+      <div id="answer" class="result answer">
+      </div>
+
+    </section>
+
+    <footer>
+      Ollama Document AI 2.2.0
+      <br>
+      Procesamiento local · Sin API externa
+    </footer>
+
+  </main>
+
+  <script src="popup.js"></script>
+
+</body>
+</html>
+
+
